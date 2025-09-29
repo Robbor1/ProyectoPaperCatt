@@ -11,10 +11,10 @@ namespace DataaLayer
     public class ConexionSQL
     {
         SqlConnection conn;
-        string nombreServidor = "LAPTOP-IH7H7TUQ\\DAYANA_G_F";
+        string nombreServidor = "KOCCO\\SQLEXPRESS";
         string nombreBD = "PaperCatt";
-        string usuarioBD = "wadmin";
-        string passwordBD = "sis123";
+        string usuarioBD = "sa";
+        string passwordBD = "1234";
         private string connectionString;
 
         public ConexionSQL()
