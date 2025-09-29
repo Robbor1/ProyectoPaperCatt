@@ -1,0 +1,5 @@
+﻿C:\Users\Kocco\Downloads\PaperCatt-main\BussinesRules\Clientes.cs
+C:\Users\Kocco\Downloads\PaperCatt-main\BussinesRules\Configuracion.cs
+C:\Users\Kocco\Downloads\PaperCatt-main\BussinesRules\Productos.cs
+C:\Users\Kocco\Downloads\PaperCatt-main\BussinesRules\Usuarios.cs
+C:\Users\Kocco\Downloads\PaperCatt-main\BussinesRules\Utilerias.cs
