@@ -28,20 +28,22 @@ namespace ProyectoPaperCatt
                 //Rutina para validar datos vs BD vs fileEncrypt
                 Usuarios mUsuario = new Usuarios();
                 FormMainMenu mainMenu = new FormMainMenu();
-                mUsuario.setUserN(txt_user.Text);
-                mUsuario.setPass(txt_pass.Text);
+                string user = txt_user.Text.Trim();
+                string pass = txt_pass.Text.Trim();
+                Console.WriteLine($"Intentando login con UserName: '{user}', Password: '{pass}'");
+                mUsuario.setUserN(user);
+                mUsuario.setPass(pass);
                 if (mUsuario.fnValidaLogin())
                 {
+                    Console.WriteLine("Login exitoso, cerrando formulario de login.");
                     //Ingresar al sistema
-
+                    mainMenu.Show();
                     //los permisos del usuario que hizo login
                     this.Close();
-
-
                 }
                 else
                 {
-
+                    Console.WriteLine("Login fallido: usuario y/o contraseña inválidos.");
                     MessageBox.Show("El usuario y/o Contraseña son invalidos.",
                         "Aviso PaperCatt", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txt_user.Text = "";
@@ -83,20 +85,25 @@ namespace ProyectoPaperCatt
 
         private void txt_pass_Enter(object sender, EventArgs e)
         {
-            
-                
-                txt_pass.ForeColor = Color.DimGray;
-                txt_pass.UseSystemPasswordChar = true;
-            
+
+
+            txt_pass.ForeColor = Color.DimGray;
+            txt_pass.UseSystemPasswordChar = true;
+
         }
 
         private void txt_pass_Leave(object sender, EventArgs e)
         {
-            
-                
-                txt_pass.ForeColor = Color.DimGray;
-                txt_pass.UseSystemPasswordChar = true;
-            
+
+
+            txt_pass.ForeColor = Color.DimGray;
+            txt_pass.UseSystemPasswordChar = true;
+
+
+        }
+
+        private void guna2CustomGradientPanel1_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

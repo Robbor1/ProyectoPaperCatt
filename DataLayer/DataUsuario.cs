@@ -1,5 +1,4 @@
-﻿using DataaLayer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -59,37 +58,38 @@ namespace DataLayer
         {
             try
             {
-                //abrir conexion
+                Console.WriteLine($"Intentando login con UserName: '{UserName}', Password: '{password}'");
                 comandoSQL.Connection = connSQL.AbrirConexion();
-                //Enviar nombre de recursos SQL
+                if (comandoSQL.Connection == null)
+                {
+                    Console.WriteLine("No se pudo abrir la conexión a la base de datos.");
+                    renglonesAfectados = 0;
+                    return;
+                }
                 comandoSQL.CommandText = "proc_ValidaUsuario";
-                //Tipo de comando
                 comandoSQL.CommandType = CommandType.StoredProcedure;
-                //agregar parametros
                 comandoSQL.Parameters.AddWithValue("@usuario", UserName);
                 comandoSQL.Parameters.AddWithValue("@pwd", password);
-                //Ejecutar query
-                //renglonesAfectados = comandoSQL.ExecuteNonQuery();
-                //comandoSQL.ExecuteNonQuery();
                 SqlDataReader result = comandoSQL.ExecuteReader();
                 if (result.Read())
                 {
                     renglonesAfectados = 1;
-
-                    username = result["userName"].ToString();
-                    NombreDeUsuario = result["nombre"].ToString();
+                    username = result["UserName"].ToString();
+                    NombreDeUsuario = result["Nombre"].ToString();
+                    Console.WriteLine($"Login exitoso. UserName: '{username}', Nombre: '{NombreDeUsuario}'");
                 }
                 else
                 {
                     renglonesAfectados = 0;
+                    Console.WriteLine("Login fallido: No se encontró usuario con esos datos.");
                 }
+                result.Close();
                 comandoSQL.Parameters.Clear();
                 connSQL.CerrarConexion();
-                //Cerrar conexion
             }
             catch (Exception ex)
             {
-                Console.WriteLine("DataUsuario:Autenticar" + ex.Message);
+                Console.WriteLine("DataUsuario:Autenticar " + ex.ToString());
             }
         }
 
@@ -126,35 +126,29 @@ namespace DataLayer
             return productsTable;
         }
 
-        public DataTable filter(string name)
+        public DataTable filter(string value)
         {
-            DataTable productsTable = new DataTable();
-
+            DataTable usersTable = new DataTable();
             try
             {
                 comandoSQL.Connection = connSQL.AbrirConexion();
-
                 comandoSQL.CommandText = "proc_BuscarUsuario";
-
-                comandoSQL.CommandType = System.Data.CommandType.StoredProcedure;
+                comandoSQL.CommandType = CommandType.StoredProcedure;
+                comandoSQL.Parameters.AddWithValue("@valor", value); // Buscar por nombre o UserName
 
                 using (SqlDataReader reader = comandoSQL.ExecuteReader())
                 {
-                    productsTable.Load(reader);
+                    usersTable.Load(reader);
                 }
-
-
-
 
                 comandoSQL.Parameters.Clear();
                 connSQL.CerrarConexion();
-
             }
             catch (SqlException ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
-            return productsTable;
+            return usersTable;
         }
 
         public void processRow(Dictionary<string, object> rowData)

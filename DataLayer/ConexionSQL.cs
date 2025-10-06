@@ -1,33 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
-namespace DataaLayer
+namespace DataLayer
 {
     public class ConexionSQL
     {
-        SqlConnection conn;
-        string nombreServidor = "KOCCO\\SQLEXPRESS";
-        string nombreBD = "PaperCatt";
-        string usuarioBD = "sa";
-        string passwordBD = "1234";
+        private SqlConnection conn;
         private string connectionString;
 
         public ConexionSQL()
         {
             try
             {
-                //agregar connectionString
-                connectionString = $"Server={nombreServidor};Database={nombreBD};User id ={usuarioBD};Password={passwordBD};";
+                // Obtener la cadena de conexión desde App.config
+                connectionString = ConfigurationManager.ConnectionStrings["PaperCattDB"].ConnectionString;
                 conn = new SqlConnection(connectionString);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("ConexionSQL: " + ex.Message);
+                Console.WriteLine($"ConexionSQL: Error al crear la conexión. Detalle: {ex.Message}");
             }
         }
 
@@ -41,7 +34,7 @@ namespace DataaLayer
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine($"ConexionSQL: Error al abrir la conexión. Detalle: {ex.Message}");
                 return null;
             }
         }
@@ -55,7 +48,7 @@ namespace DataaLayer
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine($"ConexionSQL: Error al cerrar la conexión. Detalle: {ex.Message}");
                 return null;
             }
         }
