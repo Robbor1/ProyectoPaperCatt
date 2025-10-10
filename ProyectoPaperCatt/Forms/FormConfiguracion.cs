@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using DataaLayer;
+using DataLayer;
 using Microsoft.Identity.Client;
 
 namespace ProyectoPaperCatt.Forms

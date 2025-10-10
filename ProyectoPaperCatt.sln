@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProyectoPaperCatt", "ProyectoPaperCatt\ProyectoPaperCatt.csproj", "{70ED3F3A-4E4A-4B30-9D6E-A44CCF5AAE31}"
+	ProjectSection(ProjectDependencies) = postProject
+		{778CD511-F2B2-4D16-8118-24C986AE12E5} = {778CD511-F2B2-4D16-8118-24C986AE12E5}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Negocios", "Negocios\Negocios.csproj", "{077B5BEB-E9C4-4FC6-9713-E65EF21EA392}"
 EndProject

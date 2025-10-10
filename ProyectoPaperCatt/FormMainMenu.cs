@@ -9,7 +9,6 @@ namespace ProyectoPaperCatt
         //Fields
         private Button currentButton;
         private Random random;
-        private int tempIndex;
         private Form activeForm;
 
         //Constructor
@@ -152,8 +151,7 @@ namespace ProyectoPaperCatt
             {
                 //Text = "Sistema de Punto de Ventas (POS)";
 
-                Login login = new Login();
-                login.ShowDialog();
+                
 
                 // this.Text = this.Text + " ---> UserName: " + Utilerias.G_NombreUsuario
                 //    + "Nombre: " + Utilerias.G_Usuario;
@@ -188,12 +186,8 @@ namespace ProyectoPaperCatt
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
 
-            this.Close();
-
-            Login frmLogin = new Login();
-
-            frmLogin.ShowDialog();
-
+            // Cierra el MainMenu y reinicia la aplicación, forzando un nuevo login
+            Application.Restart();
 
 
         }

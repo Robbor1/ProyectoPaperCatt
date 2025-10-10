@@ -27,7 +27,6 @@ namespace ProyectoPaperCatt
             {
                 //Rutina para validar datos vs BD vs fileEncrypt
                 Usuarios mUsuario = new Usuarios();
-                FormMainMenu mainMenu = new FormMainMenu();
                 string user = txt_user.Text.Trim();
                 string pass = txt_pass.Text.Trim();
                 Console.WriteLine($"Intentando login con UserName: '{user}', Password: '{pass}'");
@@ -36,10 +35,10 @@ namespace ProyectoPaperCatt
                 if (mUsuario.fnValidaLogin())
                 {
                     Console.WriteLine("Login exitoso, cerrando formulario de login.");
-                    //Ingresar al sistema
-                    mainMenu.Show();
-                    //los permisos del usuario que hizo login
-                    this.Close();
+                    
+                    
+                    this.DialogResult = DialogResult.OK; // Indica que el login fue exitoso
+                    this.Close(); // Cierra el formulario de login
                 }
                 else
                 {
